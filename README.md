@@ -4,9 +4,9 @@ A simple (for now) Markdown editor with live preview.
 
 ## Features
 
-- Live preview
+✅ Live preview
 
-[] Syntax highlighting
+✅ Syntax highlighting
 
 [] Markdown keyboard shortcuts
 
