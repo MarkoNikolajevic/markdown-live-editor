@@ -10,6 +10,9 @@ type PreviewProps = {
 export function Preview({ markdownContent }: PreviewProps) {
   return (
     <div>
+      <div className='flex items-center justify-between border-b border-gray-800 bg-[#252526] px-4 py-2'>
+        <span className='text-sm font-medium text-gray-400'>PREVIEW</span>
+      </div>
       <div
         className={cn(
           'h-[calc(100vh-88px)] overflow-auto p-8',
