@@ -1,8 +1,7 @@
-// src/store/useDocumentStore.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type Document = {
+type Document = {
   name: string;
   content: string;
   lastModified: Date;
@@ -14,6 +13,7 @@ interface DocumentStore {
   saveDocument: (document: Document) => void;
   createDocument: (name: string) => void;
   setCurrentDocument: (document: Document) => void;
+  deleteDocument: (name: string) => void;
 }
 
 const markdown = `
@@ -97,6 +97,12 @@ export const useDocumentStore = create<DocumentStore>()(
 
       setCurrentDocument: (document) =>
         set({ currentDocument: document }),
+
+      deleteDocument: (name: string) =>
+        set((state) => ({
+          documents: state.documents.filter((doc) => doc.name !== name),
+          currentDocument: state.currentDocument?.name === name ? null : state.currentDocument,
+        }))
     }),
     {
       name: 'document-storage',

@@ -1,14 +1,17 @@
 'use client';
 import { useState } from 'react';
-import { File, Save } from 'lucide-react';
+import { File, PanelRight, Save, Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useDocumentStore } from '@/store/useDocumentStore';
+import { useUIStore } from '@/store/useUIStore';
 
 export function Header() {
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState('');
+  const toggleSidebar = useUIStore((state) => state.toggleSidebar);
   const currentDocument = useDocumentStore((state) => state.currentDocument);
   const saveDocument = useDocumentStore((state) => state.saveDocument);
+  const deleteDocument = useDocumentStore((state) => state.deleteDocument);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTempName(e.target.value);
@@ -38,9 +41,19 @@ export function Header() {
     if (currentDocument) saveDocument(currentDocument);
   };
 
+  const handleDelete = () => {
+    if (currentDocument) deleteDocument(currentDocument.name);
+  };
+
   return (
-    <header className='flex items-center justify-between border-b border-gray-800 bg-[#252526] px-4 py-2'>
+    <header className='flex items-center border-b border-gray-800 bg-[#252526] px-4 py-2'>
       <div className='flex items-center gap-2'>
+        <Button variant='ghost' size='icon' onClick={toggleSidebar}>
+          <PanelRight className='size-4' />
+        </Button>
+        <p className='uppercase'>Markdown Live Editor</p>
+      </div>
+      <div className='ml-16 flex items-center gap-2'>
         <File className='text-gray-400' />
         <div className='flex flex-col'>
           <span className='text-xs text-gray-400'>Document name</span>
@@ -64,13 +77,14 @@ export function Header() {
           )}
         </div>
       </div>
-      <div className='flex items-center gap-2'>
-        <div>
-          <Button onClick={handleSave}>
-            <Save className='size-4' />
-            Save changes
-          </Button>
-        </div>
+      <div className='ml-auto flex items-center gap-2'>
+        <Button variant={'ghost'} size={'icon'} onClick={handleDelete}>
+          <Trash className='size-4' />
+        </Button>
+        <Button onClick={handleSave}>
+          <Save className='size-4' />
+          Save changes
+        </Button>
       </div>
     </header>
   );

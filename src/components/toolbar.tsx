@@ -27,7 +27,7 @@ export function Toolbar({ editorRef }: MarkdownToolbarProps) {
               <Button
                 variant='ghost'
                 size='icon'
-                className='size-8 cursor-pointer text-gray-400 hover:bg-orange-500 hover:text-white'
+                className='size-8'
                 onClick={action.action}
               >
                 <action.icon className='h-4 w-4' />

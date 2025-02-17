@@ -18,7 +18,9 @@ export function Editor({ markdownContent, handleEditorChange }: EditorProps) {
   return (
     <div className='border-r border-gray-800'>
       <div className='flex items-center justify-between border-b border-gray-800 bg-[#252526] px-4 py-2'>
-        <span className='text-sm font-medium text-gray-400'>MARKDOWN</span>
+        <span className='text-sm font-medium text-gray-400 uppercase'>
+          Markdown
+        </span>
       </div>
       <Toolbar editorRef={editorRef} />
       <CodeMirror
