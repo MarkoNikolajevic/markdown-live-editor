@@ -5,6 +5,6 @@
   "singleQuote": true,
   "printWidth": 80,
   "trailingComma": "none",
-  "tailwindFunctions": ["clsx"],
+  "tailwindFunctions": ["clsx", "cva"],
   "tailwindStylesheet": "./src/app/globals.css"
 }

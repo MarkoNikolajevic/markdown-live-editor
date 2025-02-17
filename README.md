@@ -6,9 +6,10 @@ A simple (for now) Markdown editor with live preview.
 
 ✅ Live preview  
 ✅ Syntax highlighting  
+✅ Add toolbar with common markdown shortcuts  
 [] Markdown keyboard shortcuts  
-[] Add toolbar with common markdown shortcuts  
 [] View full page preview  
+[] Make it responsive
 [] File save/load feature (localStorage)  
 [] CRUD operations  
 [] Export as PDF  

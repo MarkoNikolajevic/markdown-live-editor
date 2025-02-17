@@ -5,6 +5,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { languages } from '@codemirror/language-data';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import type { EditorView } from '@codemirror/view';
+import { Toolbar } from './toolbar';
 
 type EditorProps = {
   markdownContent: string;
@@ -19,6 +20,7 @@ export function Editor({ markdownContent, handleEditorChange }: EditorProps) {
       <div className='flex items-center justify-between border-b border-gray-800 bg-[#252526] px-4 py-2'>
         <span className='text-sm font-medium text-gray-400'>MARKDOWN</span>
       </div>
+      <Toolbar editorRef={editorRef} />
       <CodeMirror
         value={markdownContent}
         height='calc(100vh - 88px)'
