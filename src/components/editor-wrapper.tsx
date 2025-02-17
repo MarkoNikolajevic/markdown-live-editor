@@ -1,57 +1,32 @@
 'use client';
-
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { Editor } from '@/components/editor';
 import { Preview } from '@/components/preview';
-
-const markdown = `
-# Welcome to Markdown
-
-Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents.
-    
-## How to use this?
-    
-1. Write markdown in the markdown editor window
-2. See the rendered markdown in the preview window
-    
-### Features
-    
-- Create headings, paragraphs, links, blockquotes, inline-code, code blocks, and lists
-- Name and save the document to access again later
-- Choose between Light or Dark mode depending on your preference
-    
-> This is an example of a blockquote. If you would like to learn more about markdown syntax, you can visit this [markdown cheatsheet](https://www.markdownguide.org/cheat-sheet/).
-    
-#### Headings
-    
-To create a heading, add the hash sign (#) before the heading. The number of number signs you use should correspond to the heading level. You'll see in this guide that we've used all six heading levels (not necessarily in the correct way you should use headings!) to illustrate how they should look.
-    
-##### Lists
-    
-You can see examples of ordered and unordered lists above.
-
-This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline</p>\`. It also allows for larger code blocks like this:
-    
-\`\`\`
-<main>
-  <h1>This is a larger code block</h1>
-</main>
-\`\`\`
-`;
+import { useDocumentStore } from '@/store/useDocumentStore';
 
 export function EditorWrapper() {
-  const [markdownContent, setMarkdownContent] = useState(markdown);
-  const handleEditorChange = useCallback((value: string) => {
-    setMarkdownContent(value);
-  }, []);
+  const currentDocument = useDocumentStore((state) => state.currentDocument);
+  const saveDocument = useDocumentStore((state) => state.saveDocument);
+
+  const handleEditorChange = useCallback(
+    (value: string) => {
+      if (currentDocument) {
+        saveDocument({
+          ...currentDocument,
+          content: value
+        });
+      }
+    },
+    [currentDocument, saveDocument]
+  );
 
   return (
     <>
       <Editor
-        markdownContent={markdownContent}
+        markdownContent={currentDocument?.content ?? ''}
         handleEditorChange={handleEditorChange}
       />
-      <Preview markdownContent={markdownContent} />
+      <Preview markdownContent={currentDocument?.content ?? ''} />
     </>
   );
 }

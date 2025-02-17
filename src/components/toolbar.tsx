@@ -20,14 +20,14 @@ export function Toolbar({ editorRef }: MarkdownToolbarProps) {
 
   return (
     <TooltipProvider>
-      <div className='flex space-x-1 py-2'>
+      <div className='flex space-x-1 p-2'>
         {toolbarActions.map((action, index) => (
           <Tooltip key={index}>
             <TooltipTrigger asChild>
               <Button
                 variant='ghost'
                 size='icon'
-                className='size-8 cursor-pointer text-gray-400 hover:bg-orange-400 hover:text-white'
+                className='size-8 cursor-pointer text-gray-400 hover:bg-orange-500 hover:text-white'
                 onClick={action.action}
               >
                 <action.icon className='h-4 w-4' />

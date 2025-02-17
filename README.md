@@ -7,11 +7,11 @@ A simple (for now) Markdown editor with live preview.
 ✅ Live preview  
 ✅ Syntax highlighting  
 ✅ Add toolbar with common markdown shortcuts  
-[] Markdown keyboard shortcuts  
-[] View full page preview  
-[] Make it responsive
-[] File save/load feature (localStorage)  
+✅ File save/load feature (localStorage)  
 [] CRUD operations  
+[] View full page preview  
+[] Markdown keyboard shortcuts  
+[] Make it responsive
 [] Export as PDF  
 [] Light/Dark mode  
 [] VSCode extension ?
