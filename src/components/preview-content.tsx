@@ -13,7 +13,7 @@ export function PreviewContent({
         'prose max-w-none prose-invert',
         'prose-headings:border-gray-800 prose-headings:font-semibold',
         'prose-p:text-gray-300',
-        'prose-blockquote:border-l-gray-800 prose-blockquote:text-gray-300',
+        'prose-a:text-orange-500 prose-blockquote:border-l-orange-400 prose-blockquote:text-gray-300',
         'prose-code:text-gray-300',
         'prose-pre:bg-[#252526]'
       )}

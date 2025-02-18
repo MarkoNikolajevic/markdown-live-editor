@@ -46,17 +46,19 @@ export function Header() {
   };
 
   return (
-    <header className='flex items-center border-b border-gray-800 bg-[#252526] px-4 py-2'>
+    <header className='flex border-b border-gray-800 bg-[#252526] px-4 py-2 md:items-center'>
       <div className='flex items-center gap-2'>
         <Button variant='ghost' size='icon' onClick={toggleSidebar}>
           <PanelRight className='size-4' />
         </Button>
-        <p className='uppercase'>Markdown Live Editor</p>
+        <p className='hidden uppercase md:block'>Markdown Live Editor</p>
       </div>
-      <div className='ml-16 flex items-center gap-2'>
+      <div className='flex items-center gap-2 md:ml-16'>
         <File className='text-gray-400' />
         <div className='flex flex-col'>
-          <span className='text-xs text-gray-400'>Document name</span>
+          <span className='hidden text-xs text-gray-400 md:block'>
+            Document name
+          </span>
           {isEditing ? (
             <input
               type='text'
@@ -83,7 +85,7 @@ export function Header() {
         </Button>
         <Button onClick={handleSave}>
           <Save className='size-4' />
-          Save changes
+          <span className='hidden md:block'>Save</span>
         </Button>
       </div>
     </header>

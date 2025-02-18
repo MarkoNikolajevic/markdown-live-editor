@@ -52,7 +52,7 @@ This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline
 `;
 
 const defaultDocument: Document = {
-  name: 'welcome.md',
+  name: 'welcome',
   content: markdown,
   lastModified: new Date(),
 };
@@ -105,7 +105,7 @@ export const useDocumentStore = create<DocumentStore>()(
         }))
     }),
     {
-      name: 'document-storage',
+      name: 'document-store',
     }
   )
 );

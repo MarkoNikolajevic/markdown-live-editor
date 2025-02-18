@@ -5,7 +5,11 @@ import CodeMirror from '@uiw/react-codemirror';
 import { languages } from '@codemirror/language-data';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import type { EditorView } from '@codemirror/view';
-import { Toolbar } from './toolbar';
+import { Eye } from 'lucide-react';
+import { Toolbar } from '@/components/toolbar';
+import { Button } from '@/components/ui/button';
+import { useUIStore } from '@/store/useUIStore';
+import { cn } from '@/lib/utils';
 
 type EditorProps = {
   markdownContent: string;
@@ -14,13 +18,27 @@ type EditorProps = {
 
 export function Editor({ markdownContent, handleEditorChange }: EditorProps) {
   const editorRef = useRef<EditorView | null>(null);
+  const { activeView, toggleView } = useUIStore();
 
   return (
-    <div className='border-r border-gray-800'>
+    <div
+      className={cn('border-r border-gray-800 md:block', {
+        'block max-md:col-span-2': activeView === 'editor',
+        hidden: activeView === 'preview'
+      })}
+    >
       <div className='flex items-center justify-between border-b border-gray-800 bg-[#252526] px-4 py-2'>
         <span className='text-sm font-medium text-gray-400 uppercase'>
           Markdown
         </span>
+        <Button
+          variant='ghost'
+          size='icon'
+          onClick={toggleView}
+          className='md:hidden'
+        >
+          <Eye className='size-4' />
+        </Button>
       </div>
       <Toolbar editorRef={editorRef} />
       <CodeMirror
