@@ -1,14 +1,13 @@
 'use client';
 import { useState } from 'react';
-import { File, PanelRight, Save, Trash } from 'lucide-react';
+import { File, Save, Trash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ToggleSidebar } from '@/components/toggle-sidebar';
 import { useDocumentStore } from '@/store/useDocumentStore';
-import { useUIStore } from '@/store/useUIStore';
 
 export function Header() {
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState('');
-  const toggleSidebar = useUIStore((state) => state.toggleSidebar);
   const currentDocument = useDocumentStore((state) => state.currentDocument);
   const saveDocument = useDocumentStore((state) => state.saveDocument);
   const deleteDocument = useDocumentStore((state) => state.deleteDocument);
@@ -48,9 +47,7 @@ export function Header() {
   return (
     <header className='flex border-b border-gray-800 bg-[#252526] px-4 py-2 md:items-center'>
       <div className='flex items-center gap-2'>
-        <Button variant='ghost' size='icon' onClick={toggleSidebar}>
-          <PanelRight className='size-4' />
-        </Button>
+        <ToggleSidebar />
         <p className='hidden uppercase md:block'>Markdown Live Editor</p>
       </div>
       <div className='flex items-center gap-2 md:ml-16'>
