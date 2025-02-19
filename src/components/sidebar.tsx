@@ -41,7 +41,7 @@ export function Sidebar() {
         </div>
         <Button onClick={handleCreateDocument}>
           <Plus className='size-4' />
-          <span className='hidden md:block'>New document</span>
+          New document
         </Button>
       </div>
       <ScrollArea className='h-[calc(100vh-64px)] p-4'>

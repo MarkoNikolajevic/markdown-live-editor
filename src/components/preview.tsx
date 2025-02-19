@@ -1,4 +1,4 @@
-import { EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
 import { Button } from '@/components/ui/button';
 import { PreviewContent } from '@/components/preview-content';
@@ -9,13 +9,19 @@ type PreviewProps = {
 };
 
 export function Preview({ markdownContent }: PreviewProps) {
-  const { activeView, toggleView } = useUIStore();
+  const {
+    activeView,
+    toggleView,
+    isFullscreenPreview,
+    toggleFullscreenPreview
+  } = useUIStore();
 
   return (
     <div
       className={cn('md:block', {
         'block max-md:col-span-2': activeView === 'preview',
-        hidden: activeView === 'editor'
+        hidden: activeView === 'editor',
+        'md:col-span-2': isFullscreenPreview
       })}
     >
       <div className='flex items-center justify-between border-b border-gray-800 bg-[#252526] px-4 py-2'>
@@ -25,11 +31,25 @@ export function Preview({ markdownContent }: PreviewProps) {
         <Button
           variant='ghost'
           size='icon'
-          onClick={toggleView}
-          className='md:hidden'
+          onClick={toggleFullscreenPreview}
+          className='max-md:hidden'
         >
-          <EyeOff className='size-4' />
+          {isFullscreenPreview ? (
+            <EyeOff className='size-4' />
+          ) : (
+            <Eye className='size-4' />
+          )}
         </Button>
+        {activeView === 'preview' && (
+          <Button
+            variant='ghost'
+            size='icon'
+            onClick={toggleView}
+            className='md:hidden'
+          >
+            <EyeOff className='size-4' />
+          </Button>
+        )}
       </div>
       <PreviewContent markdownContent={markdownContent} />
     </div>

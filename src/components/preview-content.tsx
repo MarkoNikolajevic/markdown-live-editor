@@ -9,7 +9,7 @@ export function PreviewContent({
   return (
     <div
       className={cn(
-        'h-[calc(100vh-88px)] overflow-auto p-8',
+        'h-[calc(100vh-88px)] overflow-auto px-4 py-8',
         'prose max-w-none prose-invert',
         'prose-headings:border-gray-800 prose-headings:font-semibold',
         'prose-p:text-gray-300',

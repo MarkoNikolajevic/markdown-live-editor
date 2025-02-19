@@ -11,7 +11,7 @@ A simple (for now) Markdown editor with live preview.
 ✅ CRUD operations  
 ✅ Make it responsive
 ✅ UI improvements/animations  
-[] View full page preview  
+✅ View full page preview  
 [] Export as PDF  
 [] Light/Dark mode  
 [] VSCode extension ?
