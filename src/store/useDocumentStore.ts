@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { generateId } from '@/lib/utils';
 
-type Document = {
+export type MarkdownDocument = {
   id: string;
   name: string;
   content: string;
@@ -10,11 +10,11 @@ type Document = {
 }
 
 interface DocumentStore {
-  documents: Document[];
-  currentDocument: Document | null;
-  saveDocument: (document: Document) => void;
+  documents: MarkdownDocument[];
+  currentDocument: MarkdownDocument | null;
+  saveDocument: (document: MarkdownDocument) => void;
   createDocument: (name: string) => void;
-  setCurrentDocument: (document: Document) => void;
+  setCurrentDocument: (document: MarkdownDocument) => void;
   deleteDocument: (id: string) => void;
 }
 
@@ -52,7 +52,7 @@ This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline
 \`\`\`
 `;
 
-const defaultDocument: Document = {
+const defaultDocument: MarkdownDocument = {
   id: generateId(),
   name: 'welcome',
   content: markdown,

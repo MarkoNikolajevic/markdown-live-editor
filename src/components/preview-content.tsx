@@ -8,6 +8,7 @@ export function PreviewContent({
 }) {
   return (
     <div
+      id='preview-content'
       className={cn(
         'h-[calc(100vh-88px)] overflow-auto px-4 py-8',
         'prose max-w-none prose-invert',

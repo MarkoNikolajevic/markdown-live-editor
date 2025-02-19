@@ -1,9 +1,10 @@
 'use client';
 import { useState } from 'react';
-import { File, Save, Trash2 } from 'lucide-react';
+import { File, Save, Trash2, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ToggleSidebar } from '@/components/toggle-sidebar';
 import { useDocumentStore } from '@/store/useDocumentStore';
+import { exportToPDF } from '@/lib/pdf';
 
 export function Header() {
   const [isEditing, setIsEditing] = useState(false);
@@ -83,6 +84,13 @@ export function Header() {
         <Button onClick={handleSave}>
           <Save className='size-4' />
           <span className='hidden md:block'>Save</span>
+        </Button>
+        <Button
+          variant='secondary'
+          onClick={() => exportToPDF(currentDocument)}
+        >
+          <FileDown className='size-4' />
+          <span className='hidden md:block'>Export PDF</span>
         </Button>
       </div>
     </header>
