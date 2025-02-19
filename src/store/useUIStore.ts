@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 interface UIStore {
   isSidebarOpen: boolean;
   isDarkMode: boolean;
-  activeView: 'editor' | 'preview'
+  activeView: 'editor' | 'preview';
   toggleSidebar: () => void;
   toggleTheme: () => void;
   toggleView: () => void;

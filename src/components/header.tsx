@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { File, Save, Trash } from 'lucide-react';
+import { File, Save, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ToggleSidebar } from '@/components/toggle-sidebar';
 import { useDocumentStore } from '@/store/useDocumentStore';
@@ -41,7 +41,7 @@ export function Header() {
   };
 
   const handleDelete = () => {
-    if (currentDocument) deleteDocument(currentDocument.name);
+    if (currentDocument) deleteDocument(currentDocument.id);
   };
 
   return (
@@ -78,7 +78,7 @@ export function Header() {
       </div>
       <div className='ml-auto flex items-center gap-2'>
         <Button variant={'ghost'} size={'icon'} onClick={handleDelete}>
-          <Trash className='size-4' />
+          <Trash2 className='size-4' />
         </Button>
         <Button onClick={handleSave}>
           <Save className='size-4' />

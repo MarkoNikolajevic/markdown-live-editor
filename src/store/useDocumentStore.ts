@@ -1,7 +1,9 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { generateId } from '@/lib/utils';
 
 type Document = {
+  id: string;
   name: string;
   content: string;
   lastModified: Date;
@@ -13,7 +15,7 @@ interface DocumentStore {
   saveDocument: (document: Document) => void;
   createDocument: (name: string) => void;
   setCurrentDocument: (document: Document) => void;
-  deleteDocument: (name: string) => void;
+  deleteDocument: (id: string) => void;
 }
 
 const markdown = `
@@ -30,7 +32,6 @@ Markdown is a lightweight markup language that you can use to add formatting ele
     
 - Create headings, paragraphs, links, blockquotes, inline-code, code blocks, and lists
 - Name and save the document to access again later
-- Choose between Light or Dark mode depending on your preference
     
 > This is an example of a blockquote. If you would like to learn more about markdown syntax, you can visit this [markdown cheatsheet](https://www.markdownguide.org/cheat-sheet/).
     
@@ -52,6 +53,7 @@ This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline
 `;
 
 const defaultDocument: Document = {
+  id: generateId(),
   name: 'welcome',
   content: markdown,
   lastModified: new Date(),
@@ -60,12 +62,12 @@ const defaultDocument: Document = {
 export const useDocumentStore = create<DocumentStore>()(
   persist(
     (set) => ({
-      documents: [],
+      documents: [defaultDocument],
       currentDocument: defaultDocument,
       saveDocument: (document) =>
         set((state) => {
           const updatedDoc = { ...document, lastModified: new Date() };
-          const index = state.documents.findIndex(doc => doc.name === document.name);
+          const index = state.documents.findIndex(doc => doc.id === document.id);
 
           if (index !== -1) {
             const updatedDocs = [...state.documents];
@@ -85,6 +87,7 @@ export const useDocumentStore = create<DocumentStore>()(
       createDocument: (name) =>
         set((state) => {
           const newDocument = {
+            id: generateId(),
             name,
             content: '',
             lastModified: new Date(),
@@ -98,10 +101,10 @@ export const useDocumentStore = create<DocumentStore>()(
       setCurrentDocument: (document) =>
         set({ currentDocument: document }),
 
-      deleteDocument: (name: string) =>
+      deleteDocument: (id: string) =>
         set((state) => ({
-          documents: state.documents.filter((doc) => doc.name !== name),
-          currentDocument: state.currentDocument?.name === name ? null : state.currentDocument,
+          documents: state.documents.filter((doc) => doc.id !== id),
+          currentDocument: state.currentDocument?.id === id ? null : state.currentDocument,
         }))
     }),
     {

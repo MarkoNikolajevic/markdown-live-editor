@@ -1,5 +1,5 @@
 'use client';
-import type { ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 import { Sidebar } from '@/components/sidebar';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
