@@ -8,8 +8,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Markdown Editor',
-  description: 'A modern markdown editor with live preview'
+  title: 'Markdown Live Editor - Real-time Preview Markdown Editor',
+  description:
+    'A modern, feature-rich markdown editor with live preview, PDF export, and dark mode. Write and preview markdown in real-time with syntax highlighting.',
+  keywords: [
+    'markdown editor',
+    'live preview',
+    'real-time markdown',
+    'markdown to PDF',
+    'text editor',
+    'document editor',
+    'writing tool',
+    'markdown converter',
+    'web-based editor'
+  ],
+  authors: [
+    { name: 'Marko Nikolajević', url: 'https://github.com/MarkoNikolajevic' }
+  ],
+  creator: 'Marko Nikolajević',
+  applicationName: 'Markdown Live Editor'
 };
 
 export default function RootLayout({
