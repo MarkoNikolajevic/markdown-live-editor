@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { DeleteDocumentDialog } from '@/components/delete-document-dialog';
 import { ToggleSidebar } from '@/components/toggle-sidebar';
 import { useDocumentStore } from '@/store/useDocumentStore';
 import { cn } from '@/lib/utils';
@@ -70,16 +71,10 @@ export function Sidebar() {
                   </small>
                   {doc.name}
                 </span>
-                <Button
-                  variant={'ghost'}
-                  size={'icon'}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    deleteDocument(doc.id);
-                  }}
-                >
-                  <Trash2 className='size-4' />
-                </Button>
+                <DeleteDocumentDialog
+                  documentName={doc.name}
+                  onClick={() => deleteDocument(doc.id)}
+                />
               </p>
             </motion.div>
           ))}

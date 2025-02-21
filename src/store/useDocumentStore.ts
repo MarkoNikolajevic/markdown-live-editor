@@ -108,7 +108,7 @@ export const useDocumentStore = create<DocumentStore>()(
           if (filteredDocuments.length === 0) {
             const newDocument = {
               id: generateId(),
-              name: 'untitled',
+              name: `Document ${state.documents.length + 1}`,
               content: '',
               lastModified: new Date(),
             };

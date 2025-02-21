@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { File, Save, Trash2, FileDown } from 'lucide-react';
+import { File, Save, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { DeleteDocumentDialog } from '@/components/delete-document-dialog';
 import { ToggleSidebar } from '@/components/toggle-sidebar';
 import { useDocumentStore } from '@/store/useDocumentStore';
 import { exportToPDF } from '@/lib/pdf';
@@ -84,9 +85,12 @@ export function Header() {
         </div>
       </div>
       <div className='ml-auto flex items-center gap-2'>
-        <Button variant={'ghost'} size={'icon'} onClick={handleDelete}>
-          <Trash2 className='size-4' />
-        </Button>
+        {currentDocument && (
+          <DeleteDocumentDialog
+            documentName={currentDocument.name}
+            onClick={handleDelete}
+          />
+        )}
         <Button onClick={handleSave}>
           <Save className='size-4' />
           <span className='hidden md:block'>Save</span>
