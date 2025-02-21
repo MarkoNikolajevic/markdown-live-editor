@@ -102,10 +102,27 @@ export const useDocumentStore = create<DocumentStore>()(
         set({ currentDocument: document }),
 
       deleteDocument: (id: string) =>
-        set((state) => ({
-          documents: state.documents.filter((doc) => doc.id !== id),
-          currentDocument: state.currentDocument?.id === id ? null : state.currentDocument,
-        }))
+        set((state) => {
+          const filteredDocuments = state.documents.filter((doc) => doc.id !== id);
+
+          if (filteredDocuments.length === 0) {
+            const newDocument = {
+              id: generateId(),
+              name: 'untitled',
+              content: '',
+              lastModified: new Date(),
+            };
+            return {
+              documents: [newDocument],
+              currentDocument: newDocument,
+            };
+          }
+
+          return {
+            documents: filteredDocuments,
+            currentDocument: state.currentDocument?.id === id ? filteredDocuments[0] : state.currentDocument
+          }
+        })
     }),
     {
       name: 'document-store',
