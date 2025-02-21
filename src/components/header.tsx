@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { File, Save, Trash2, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 import { ToggleSidebar } from '@/components/toggle-sidebar';
 import { useDocumentStore } from '@/store/useDocumentStore';
 import { exportToPDF } from '@/lib/pdf';
@@ -38,7 +39,12 @@ export function Header() {
   };
 
   const handleSave = () => {
-    if (currentDocument) saveDocument(currentDocument);
+    if (currentDocument) {
+      saveDocument(currentDocument);
+      toast('Document saved', {
+        description: `Successfully saved "${currentDocument.name}"`
+      });
+    }
   };
 
   const handleDelete = () => {
