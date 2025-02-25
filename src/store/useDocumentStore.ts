@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { generateId } from '@/lib/utils';
+import { generateId, generateRandomName } from '@/lib/utils';
 
 export type MarkdownDocument = {
   id: string;
@@ -108,7 +108,7 @@ export const useDocumentStore = create<DocumentStore>()(
           if (filteredDocuments.length === 0) {
             const newDocument = {
               id: generateId(),
-              name: `Document ${state.documents.length + 1}`,
+              name: generateRandomName(),
               content: '',
               lastModified: new Date(),
             };

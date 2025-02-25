@@ -13,3 +13,20 @@ export function generateId(): string {
   }
   return id;
 }
+
+export function generateRandomName() {
+  const adjectives = [
+    'Sleepy', 'Dancing', 'Quirky', 'Bouncing', 'Giggling',
+    'Mysterious', 'Cosmic', 'Fluffy', 'Wobbly', 'Jazzy'
+  ];
+
+  const nouns = [
+    'Penguin', 'Unicorn', 'Potato', 'Banana', 'Raccoon',
+    'Noodle', 'Pickle', 'Waffle', 'Dinosaur', 'Robot'
+  ];
+
+  const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+  const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+  return `${randomAdjective} ${randomNoun}`;
+};

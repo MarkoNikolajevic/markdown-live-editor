@@ -5,7 +5,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { DeleteDocumentDialog } from '@/components/delete-document-dialog';
 import { ToggleSidebar } from '@/components/toggle-sidebar';
 import { useDocumentStore } from '@/store/useDocumentStore';
-import { cn } from '@/lib/utils';
+import { cn, generateRandomName } from '@/lib/utils';
 
 export function Sidebar() {
   const documents = useDocumentStore((state) => state.documents);
@@ -17,7 +17,7 @@ export function Sidebar() {
   );
 
   const handleCreateDocument = () => {
-    const documentName = `Document ${documents.length + 1}`;
+    const documentName = generateRandomName();
     createDocument(documentName);
   };
 
