@@ -47,6 +47,8 @@ function Button({
   }) {
   const Comp = asChild ? Slot : 'button';
 
+  enum ButtonVariant {}
+
   return (
     <Comp
       data-slot='button'
